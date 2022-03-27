@@ -7,7 +7,7 @@ export class TokenMissing implements IAppError {
   stack?: string;
 
   constructor () {
-    this.message = "token missing";
+    this.message = "Token missing";
     this.statusCode = 401;
     this.name = "TokenMissingError";
   }
