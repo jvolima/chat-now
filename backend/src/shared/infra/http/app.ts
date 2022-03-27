@@ -2,11 +2,11 @@ import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
-import "../shared/container";
+import "../container";
 import "dotenv/config";
 import "express-async-errors";
 import { routes } from "./routes";
-import { IAppError } from "../../core/domain/errors/IAppError";
+import { IAppError } from "../../../core/domain/errors/IAppError";
 
 const app = express();
 app.use(express.json());
