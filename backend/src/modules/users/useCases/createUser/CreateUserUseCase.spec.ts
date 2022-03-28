@@ -1,6 +1,8 @@
 import { UsersRepositoryInMemory } from "../../repositories/implementations/UsersRepositoryInMemory";
 import { IUsersRepository } from "../../repositories/IUsersRepository"
 import { CreateUserUseCase } from "./CreateUserUseCase";
+import { EmailAlreadyExists } from "./errors/EmailAlreadyExists";
+import { PasswordLength } from "./errors/PasswordLength";
 
 describe("Create user useCase", () => {
   let usersRepository: IUsersRepository;
@@ -24,12 +26,6 @@ describe("Create user useCase", () => {
   });
 
   it("Should not be able to create a new user if email is already registered", async () => {
-    const errorExpected = {
-      "message": "This email is already registered!",
-      "name": "EmailAlreadyExistsError",
-      "statusCode": 400
-    }
-
     expect(async () => {
       const user = {
         name: "John doe",
@@ -39,16 +35,10 @@ describe("Create user useCase", () => {
   
       await createUserUseCase.execute(user);
       await createUserUseCase.execute(user);
-    }).rejects.toEqual(errorExpected);
+    }).rejects.toBeInstanceOf(EmailAlreadyExists);
   });
 
   it("Should not be able to create a new user if password has less than 6 characters", async () => {
-    const errorExpected = {
-      "message": "The password must be at least 6 characters long!",
-      "name": "PasswordLengthError",
-      "statusCode": 400
-    }
-
     expect(async () => {
       const user = {
         name: "John doe",
@@ -57,6 +47,6 @@ describe("Create user useCase", () => {
       };
   
       await createUserUseCase.execute(user);
-    }).rejects.toEqual(errorExpected);
+    }).rejects.toBeInstanceOf(PasswordLength);
   });
 });
