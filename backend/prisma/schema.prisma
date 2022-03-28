@@ -17,8 +17,36 @@ model User {
   senderMessages Message[] @relation("sender")
   recipientMessages Message[] @relation("recipient")
   tokens UserToken[]
+  friends Friend[] @relation("friend")
+  users Friend[] @relation("user")
+  requesters RequestToBeAFriend[] @relation("requester")
+  requesteds RequestToBeAFriend[] @relation("requested")
 
   @@map("users")
+}
+
+model RequestToBeAFriend {
+  id                String @id @default(uuid())
+  requester_id      String
+  requested_id      String
+  created_at        DateTime @default(now())
+  confirmation_date DateTime?
+
+  requester User @relation("requester", fields: [requester_id], references: [id])
+  requested User @relation("requested", fields: [requested_id], references: [id])
+
+  @@map("requests_to_be_a_friend")
+}
+
+model Friend {
+  id              String @id @default(uuid())
+  user_id         String
+  friend_id       String
+
+  user User @relation("user", fields: [user_id], references: [id])
+  friend User @relation("friend", fields: [friend_id], references: [id])
+
+  @@map("friends")
 }
 
 model UserToken {
