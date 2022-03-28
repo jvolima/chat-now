@@ -23,6 +23,9 @@ export class MessagesRepository implements IMessagesRepository {
     const messages = await prismaClient.message.findMany({
       where: {
         recipient_id
+      },
+      include: {
+        sender: true
       }
     });
 
