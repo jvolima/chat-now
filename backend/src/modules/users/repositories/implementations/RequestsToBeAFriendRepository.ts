@@ -39,4 +39,12 @@ export class RequestsToBeAFriendRepository implements IRequestsToBeAFriendReposi
       }
     });
   }
+
+  async refuse(id: string): Promise<void> {
+    await prismaClient.requestToBeAFriend.delete({
+      where: {
+        id
+      }
+    });
+  }
 }
