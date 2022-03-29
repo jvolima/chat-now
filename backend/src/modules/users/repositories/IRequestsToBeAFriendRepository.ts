@@ -9,4 +9,5 @@ export interface IRequestsToBeAFriendRepository {
   }: ICreateFriendRequestDTO): Promise<RequestToBeAFriend>;
   updateConfirmationDate(id: string): Promise<void>;
   refuse(id: string): Promise<void>;
+  listFriendRequests(id: string): Promise<RequestToBeAFriend[]>;
 }

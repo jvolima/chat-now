@@ -47,4 +47,18 @@ export class RequestsToBeAFriendRepository implements IRequestsToBeAFriendReposi
       }
     });
   }
+
+  async listFriendRequests(id: string): Promise<RequestToBeAFriend[]> {
+    const requests = await prismaClient.requestToBeAFriend.findMany({
+      where: {
+        requested_id: id,
+        confirmation_date: null
+      },
+      include: {
+        requester: true
+      }
+    });
+
+    return requests;
+  }
 }
