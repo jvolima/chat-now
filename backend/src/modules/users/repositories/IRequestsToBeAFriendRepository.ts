@@ -7,4 +7,5 @@ export interface IRequestsToBeAFriendRepository {
     requester_id, 
     requested_id 
   }: ICreateFriendRequestDTO): Promise<RequestToBeAFriend>;
+  updateConfirmationDate(id: string): Promise<void>;
 }

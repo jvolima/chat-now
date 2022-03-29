@@ -28,4 +28,15 @@ export class RequestsToBeAFriendRepository implements IRequestsToBeAFriendReposi
 
     return friendRequest as RequestToBeAFriend;
   }
+
+  async updateConfirmationDate(id: string): Promise<void> {
+    await prismaClient.requestToBeAFriend.update({
+      where: {
+        id
+      },
+      data: {
+        confirmation_date: new Date()
+      }
+    });
+  }
 }
