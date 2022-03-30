@@ -9,7 +9,7 @@ interface IRequest {
 }
 
 @injectable()
-export class ListMessagesWithAFriendUseCase {
+export class ListMessagesWithSomeoneUseCase {
   constructor (
     @inject("MessagesRepository")
     private messagesRepository: IMessagesRepository,

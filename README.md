@@ -19,7 +19,7 @@
 - [x] Adicionar um usuário como amigo
 - [x] Recusar um pedido de amizade
 - [x] Listar os pedidos de amizade que ainda não foram aceitos
-- [] Listar amigos
+- [x] Listar amigos
 - [] Refresh token
 - [] Listar uma conversa entre amigos
 - [] Integrar Socket.io na aplicação

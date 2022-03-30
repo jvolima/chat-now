@@ -4,17 +4,17 @@ import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { IMessagesRepository } from "../../repositories/IMessagesRepository"
 import { MessagesRepositoryInMemory } from "../../repositories/implementations/MessagesRepositoryInMemory";
 import { FriendNotFound } from "./errors/FriendNotFound";
-import { ListMessagesWithAFriendUseCase } from "./ListMessagesWithAFriendUseCase";
+import { ListMessagesWithSomeoneUseCase } from "./ListMessagesWithSomeoneUseCase";
 
 describe("ListMessagesWithAFriend useCase", () => {
   let messagesRepository: IMessagesRepository;
-  let listMessagesWithAFriendUseCase: ListMessagesWithAFriendUseCase;
+  let listMessagesWithSomeoneUseCase: ListMessagesWithSomeoneUseCase;
   let usersRepository: IUsersRepository;
 
   beforeEach(() => {
     messagesRepository = new MessagesRepositoryInMemory();
     usersRepository = new UsersRepositoryInMemory();
-    listMessagesWithAFriendUseCase = new ListMessagesWithAFriendUseCase(messagesRepository, usersRepository);
+    listMessagesWithSomeoneUseCase = new ListMessagesWithSomeoneUseCase(messagesRepository, usersRepository);
   });
 
   it("Should be able to list messages with a friend use case", async () => {
@@ -45,7 +45,7 @@ describe("ListMessagesWithAFriend useCase", () => {
       text: "Hi user",
     });
 
-    const messagesShared = await listMessagesWithAFriendUseCase.execute({
+    const messagesShared = await listMessagesWithSomeoneUseCase.execute({
       user_id: userCreated.id,
       friend_email: friendCreated.email,
     });
@@ -83,7 +83,7 @@ describe("ListMessagesWithAFriend useCase", () => {
         text: "Hi user",
       });
   
-      await listMessagesWithAFriendUseCase.execute({
+      await listMessagesWithSomeoneUseCase.execute({
         user_id: userCreated.id,
         friend_email: 'fake@friend.com',
       });
