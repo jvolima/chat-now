@@ -11,4 +11,17 @@ export class FriendsRepository implements IFriendsRepository {
 
     return friend;
   }
+
+  async list(id: string): Promise<Friend[]> {
+    const friends = await prismaClient.friend.findMany({
+      where: {
+        user_id: id
+      },
+      include: {
+        friend: true
+      }
+    });
+
+    return friends;
+  }
 }

@@ -39,6 +39,11 @@ export class AcceptFriendRequestUseCase {
       friend_id: requester.id
     });
 
+    await this.friendsRepository.create({
+      user_id: requester.id,
+      friend_id: requested_id
+    });
+
     return;
   }
 }

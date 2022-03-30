@@ -14,10 +14,14 @@
 - [x] Cadastro de usuários
 - [x] Autenticação do usuário
 - [x] Envio de mensagens
-- [] Refresh token
 - [x] Listagem de mensagens recebidas
-- [] Enviar um pedido de amizade
-- [] Adicionar um usuário como amigo
+- [x] Enviar um pedido de amizade
+- [x] Adicionar um usuário como amigo
+- [x] Recusar um pedido de amizade
+- [x] Listar os pedidos de amizade que ainda não foram aceitos
+- [] Listar amigos
+- [] Refresh token
 - [] Listar uma conversa entre amigos
+- [] Integrar Socket.io na aplicação
 - [] Envio de e-mail para troca de senha
 - Por enquanto essas são as minhas ideias, caso você tenha mais alguma abra uma issue que podemos conversar 🙃 

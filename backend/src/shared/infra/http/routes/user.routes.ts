@@ -4,6 +4,7 @@ import { AuthenticateUserController } from "../../../../modules/users/useCases/a
 import { CreateFriendRequestController } from "../../../../modules/users/useCases/createFriendRequest/CreateFriendRequestController";
 import { CreateUserController } from "../../../../modules/users/useCases/createUser/CreateUserController";
 import { ListFriendRequestsController } from "../../../../modules/users/useCases/listFriendRequests/ListFriendRequestsController";
+import { ListFriendsController } from "../../../../modules/users/useCases/listFriends/ListFriendsController";
 import { RefuseFriendRequestController } from "../../../../modules/users/useCases/refuseFriendRequest/RefuseFriendRequestController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
@@ -15,6 +16,7 @@ const createFriendRequestController = new CreateFriendRequestController();
 const acceptFriendRequestController = new AcceptFriendRequestController();
 const refuseFriendRequestController = new RefuseFriendRequestController();
 const listFriendRequestsController = new ListFriendRequestsController();
+const listFriendsController = new ListFriendsController();
 
 userRoutes.post("/create", createUserController.handle);
 userRoutes.post("/session", authenticateUserController.handle);
@@ -22,5 +24,6 @@ userRoutes.post("/friend-request/create", ensureAuthenticated, createFriendReque
 userRoutes.put("/friend-request/accept", ensureAuthenticated, acceptFriendRequestController.handle);
 userRoutes.delete("/friend-request/refuse", ensureAuthenticated, refuseFriendRequestController.handle);
 userRoutes.get("/friend-request/list", ensureAuthenticated, listFriendRequestsController.handle);
+userRoutes.get("/friends", ensureAuthenticated, listFriendsController.handle);
 
 export { userRoutes };
