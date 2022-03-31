@@ -32,7 +32,7 @@ export class AuthenticateUserUseCase {
 
     const { secret_token, expires_in_token } = auth;
 
-    const token = sign({ email }, secret_token, {
+    const token = sign({}, secret_token, {
       subject: user.id,
       expiresIn: expires_in_token,
     });
