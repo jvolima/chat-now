@@ -21,7 +21,7 @@
 - [x] Recusar um pedido de amizade
 - [x] Listar os pedidos de amizade que ainda não foram aceitos
 - [x] Listar amigos
-- [] Refresh token
+- [x] Refresh token
 - [] Integrar Socket.io na aplicação
 - [] Envio de e-mail para troca de senha
 - Por enquanto essas são as minhas ideias, caso você tenha mais alguma abra uma issue que podemos conversar 🙃 
