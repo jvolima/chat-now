@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { io } from "../../../../shared/infra/http/app";
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { ICreateMessageDTO } from "../../dtos/ICreateMessageDTO";
 import { IMessagesRepository } from "../../repositories/IMessagesRepository";
@@ -38,6 +39,8 @@ export class CreateMessageUseCase {
       recipient_id, 
       text 
     });
+
+    io.emit("new_message", message);
 
     return message;
   }

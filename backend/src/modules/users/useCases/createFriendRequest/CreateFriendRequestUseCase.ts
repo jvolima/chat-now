@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { io } from "../../../../shared/infra/http/app";
 import { IRequestsToBeAFriendRepository } from "../../repositories/IRequestsToBeAFriendRepository";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { RequestAlreadyExists } from "./errors/RequestAlreadyExists";
@@ -38,6 +39,8 @@ export class CreateFriendRequestUseCase {
       requester_id,
       requested_id: userRequested.id
     });
+
+    io.emit("new_friend_request", request);
 
     return request;
   }
