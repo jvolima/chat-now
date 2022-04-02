@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
     --blue-200: #599dd9;
     --blue-50: #a0dbf2;
     --white: #FFFFFF;
+    --red-400: #F20505
   }
 
   @media (max-width: 1080px) {
@@ -37,5 +38,9 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
     font-weight: 400;
+  }
+
+  button {
+    cursor: pointer;
   }
 `
