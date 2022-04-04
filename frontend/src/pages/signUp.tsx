@@ -1,11 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import 'react-toastify/dist/ReactToastify.min.css';
 import Head from "next/head";
+import { toast, ToastContainer } from "react-toastify";
 import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../components/Form/Input";
 import { Container } from "../styles/signUp";
 import { Button } from "../components/Form/Button";
 import Link from "next/link";
+import { api } from "../services/api";
+import { useRouter } from "next/router";
 
 type SignUpUserFormData = {
   name: string;
@@ -24,8 +28,25 @@ export default function SignUp() {
     resolver: yupResolver(signUpFormSchema),
   });
 
-  const onSubmit: SubmitHandler<SignUpUserFormData> = (data) => {
-    console.log(data);
+  const router = useRouter(); 
+
+  const onSubmit: SubmitHandler<SignUpUserFormData> = async (data) => {
+    try {
+      const response = await api.post("/users/create", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+
+      toast.success("User registered!");
+  
+      setTimeout(() => {
+        router.push("/")
+      }, 2000)
+    } catch (error) {
+      const { message } = error.response.data;
+      toast.error(message);
+    }
   };
 
   return (
@@ -34,6 +55,12 @@ export default function SignUp() {
         <title>Sign Up | chat-now</title>
       </Head>
       <Container>
+        <ToastContainer 
+          theme="colored" 
+          toastClassName="errorAlert"
+          autoClose={2000} 
+          pauseOnHover={false} 
+        />
         <h1>Register now to chat with <br/>your friends 😄</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
