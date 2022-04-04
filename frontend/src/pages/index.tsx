@@ -8,7 +8,7 @@ import { Container } from '../styles/signIn'
 import { Button } from '../components/Form/Button';
 import Link from 'next/link';
 
-interface SignUserFormData {
+interface SignInUserFormData {
   email: string;
   password: string;
 }
@@ -23,7 +23,7 @@ export default function Home() {
     resolver: yupResolver(signInFormSchema),
   });
 
-  const onSubmit: SubmitHandler<SignUserFormData> = (data) => {
+  const onSubmit: SubmitHandler<SignInUserFormData> = (data) => {
     console.log(data);
   }
 
