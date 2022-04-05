@@ -7,6 +7,7 @@ import { Header } from '../components/Header'
 import { Container } from '../styles/signIn'
 import { Button } from '../components/Form/Button';
 import Link from 'next/link';
+import { api } from '../services/api';
 
 interface SignInUserFormData {
   email: string;
@@ -23,8 +24,13 @@ export default function Home() {
     resolver: yupResolver(signInFormSchema),
   });
 
-  const onSubmit: SubmitHandler<SignInUserFormData> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<SignInUserFormData> = async (data) => {
+    const response = await api.post("/users/session", {
+      email: data.email,
+      password: data.password
+    });
+
+    console.log(response);
   }
 
   return (  
